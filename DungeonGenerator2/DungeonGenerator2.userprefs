@@ -1,0 +1,21 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dungeon\MapGenerator.cs">
+    <Files>
+      <File FileName="..\..\..\Documents\DungeonRPG\Assets\Scripts\Map\MapManager.cs" Line="33" Column="2" />
+      <File FileName="..\..\..\Documents\DungeonRPG\Assets\Scripts\DungeonManager.cs" Line="395" Column="35" />
+      <File FileName="Assets\Scripts\ADV\TextController.cs" Line="21" Column="24" />
+      <File FileName="Assets\Scripts\ADV\Layer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Layer2D.cs" Line="15" Column="31" />
+      <File FileName="..\..\..\Documents\DungeonRPG\Assets\Scripts\Utility\MyUtility.cs" Line="57" Column="6" />
+      <File FileName="Assets\Scripts\Dungeon\MyVector2.cs" Line="8" Column="1" />
+      <File FileName="Assets\Scripts\Dungeon\MapGenerator.cs" Line="98" Column="15" />
+      <File FileName="Assets\Scripts\ADV\ScenarioManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ADV\CommandController.cs" Line="60" Column="16" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
