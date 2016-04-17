@@ -4,58 +4,74 @@ using System.Collections;
 
 public class TextController : MonoBehaviour
 {
-    [SerializeField]
-    [Range(0.001f, 0.3f)]
-    float textSpeed = 0.05f;			//文字送りの速度
+	[SerializeField]
+	[Range(0.001f, 0.3f)]
+	float textSpeed = 0.05f;			//文字送りの速度
 
-    string currentText = string.Empty;	//現在の文字列
-    float timeUntilDisplay = 0;			//表示にかかる時間
-    float timeElapsed = 1;				//文字列の表示を開始した時間
-    int lastUpdateCharacter = -1;		//表示中の文字数
+	string currentText = string.Empty;	//現在の文字列
+	float timeUntilDisplay = 0;			//表示にかかる時間
+	float timeElapsed = 1;				//文字列の表示を開始した時間
+	int lastUpdateCharacter = -1;		//表示中の文字数
 
-    [SerializeField]
-    Text _uiText;
+	[SerializeField]
+	Text _uiText;
 	[SerializeField]
 	Text _topText;
+	[SerializeField]
+	GameObject Canvas;
 
-    // 文字の表示が完了しているかどうか
-    public bool IsCompleteDisplayText
-    {
-        get { return Time.time > timeElapsed + timeUntilDisplay; }
-    }
+	public bool textFlag = false;
 
-    //強制的に全文表示する
-    public void ForceCompleteDisplayText()
-    {
-        timeUntilDisplay = 0;
-    }
+	// 文字の表示が完了しているかどうか
+	public bool IsCompleteDisplayText {
+		get { return Time.time > timeElapsed + timeUntilDisplay; }
+	}
 
-    //次に表示する文字列をセットする
-    public void SetNextLine(string text)
-    {
-        currentText = text;
-        timeUntilDisplay = currentText.Length * textSpeed;
-        timeElapsed = Time.time;
-        lastUpdateCharacter = -1;
-    }
+	//強制的に全文表示する
+	public void ForceCompleteDisplayText ()
+	{
+		timeUntilDisplay = 0;
+	}
 
-	public void SetPlaceName(string placeName)
+	//次に表示する文字列をセットする
+	public void SetNextLine (string text)
+	{
+		currentText = text;
+		timeUntilDisplay = currentText.Length * textSpeed;
+		timeElapsed = Time.time;
+		lastUpdateCharacter = -1;
+	}
+
+	public void SetPlaceName (string placeName)
 	{
 		_topText.text = placeName;
 	}
 
     #region UNITY_CALLBACK
 
-    public void Update()
-    {
-        int displayCharacterCount =
-            (int)(Mathf.Clamp01((Time.time - timeElapsed) / timeUntilDisplay) * currentText.Length);
-        if (displayCharacterCount != lastUpdateCharacter)
-        {
-            _uiText.text = currentText.Substring(0, displayCharacterCount);
-            lastUpdateCharacter = displayCharacterCount;
-        }
-    }
+	public void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.Space))
+		{
+			if(!textFlag)
+			{
+				textFlag = true;
+				timeElapsed = Time.time;
+			}
+		}
+
+		if (textFlag)
+		{
+			Canvas.GetComponent<Canvas>().enabled = true;
+
+			int displayCharacterCount =
+				(int)(Mathf.Clamp01 ((Time.time - timeElapsed) / timeUntilDisplay) * currentText.Length);
+			if (displayCharacterCount != lastUpdateCharacter) {
+				_uiText.text = currentText.Substring (0, displayCharacterCount);
+				lastUpdateCharacter = displayCharacterCount;
+			}
+		}
+	}
 
     #endregion
 
